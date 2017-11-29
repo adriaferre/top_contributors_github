@@ -2,13 +2,33 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const app = express();
+const jwt = require('express-jwt');
 
 const contributorsHelper = require('./lib/contributorsHelper');
 
+const app = express();
+const config = require('./config');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//AUTH MECHANISM
+app.use(jwt({
+    secret: config.JWT_SECRET,
+    getToken: function fromHeaderOrQuerystring (req) {
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            return req.headers.authorization.split(' ')[1];
+        }
+        return null;
+    }
+}));
+
+app.use((err, req, res, next) => {
+    if(err) {
+        return res.status(err.status).send(err.inner)
+    }
+    return next();
+});
 
 app.get('/contributors', (req, res) => {
     let { city, top } = req.query;
