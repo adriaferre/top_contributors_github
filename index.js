@@ -46,13 +46,13 @@ app.get('/contributors', (req, res) => {
         .then(result => res.status(200).send(result))
         .catch(err => {
             console.log(err);
-            return res.status(500).send({ message: 'Internal server error' })
-        })
+            return res.status(500).send({ message: 'Internal server error' });
+        });
 });
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("service runing");
-})
+});
 
 //for testing
 module.exports = app;
