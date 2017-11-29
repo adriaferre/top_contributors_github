@@ -1,5 +1,7 @@
 # TOP CONTRIBUTORS GITHUB
 
+[![Build Status](https://travis-ci.org/adriaferre/top_contributors_github.svg?branch=master)](https://travis-ci.org/adriaferre/top_contributors_github)
+
 ## Requirements
 
 + *node version* v.8.9.1
