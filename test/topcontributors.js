@@ -67,7 +67,7 @@ describe('GET /topcontributors', () => {
 
     it('should let me get the top 100 contributors list', (done) => {
         chai.request(server)
-        .get('/contributors?city=barcelona&top=50')
+        .get('/contributors?city=barcelona&top=100')
         .end((err, res) => {
             res.should.have.status(200);
             res.should.be.json;
